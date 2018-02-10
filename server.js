@@ -17,9 +17,10 @@ var waitlist_array = [];
 
 //Routes
 // Sets up the Express app to handle data parsing
+//
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(express.static('assets'));
+app.use(express.static(path.join(__dirname, "/assets")));
 
 app.get("/", function (req, res) {
     res.sendFile(path.join(__dirname, "index.html"));
