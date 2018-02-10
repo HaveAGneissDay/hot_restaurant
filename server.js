@@ -15,23 +15,22 @@ app.listen(PORT, function() {
 var reservation_array = [];
 var waitlist_array = [];
 
-//Routes
-// Sets up the Express app to handle data parsing
-//
+//Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "/assets")));
 
+//Routes
 app.get("/", function (req, res) {
-    res.sendFile(path.join(__dirname, "home.html"));
+   res.sendFile(path.join(__dirname, "home.html"));
 });
 
-app.get("/reservation/create", function (req, res) {
-    res.sendFile(path.join(__dirname, "make.html"));
+app.get("/add", function (req, res) {
+   res.sendFile(path.join(__dirname, "make.html"));
 });
 
-app.get("/reservation/view", function (req, res) {
-    res.sendFile(path.join(__dirname, "view.html"));
+app.get("/all", function (req, res) {
+   res.sendFile(path.join(__dirname, "view.html"));
 });
 
 app.get("/api/reservation/list", function (req,res){
@@ -49,7 +48,7 @@ app.post("/api/reservation/create", function(req,res){
 	res.json({reservation:reservation_array, waitlist:waitlist_array});
 });
 
-app.get("/api/reservation/clear", function(req, res){
+app.delete("/api/reservation/clear", function(req, res){
 	reservation_array = [];
 	waitlist_array = [];
 	res.json({reservation:reservation_array, waitlist:waitlist_array});
